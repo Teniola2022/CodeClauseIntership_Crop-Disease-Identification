@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Disease Identification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Crop Disease Identification</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file" class="file-upload">
+            <span id="file-name">Upload Crop Image</span>
+        </label>
+        <input type="file" name="file" id="file" class="file-input" accept="image/*" onchange="displayFileName(this)">
+        <button type="submit" class="submit-btn">Classify Disease</button>
+    </form>
+
+    <!-- Image preview -->
+    <div id="preview-container" style="margin-top: 20px; display: none;">
+        <h4>Selected Image Preview:</h4>
+        <img id="preview" src="#" alt="Image Preview" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px;">
+    </div>
+
+    {% if prediction %}
+    <div class="result">
+        <h3>Prediction:</h3>
+        <p>{{ prediction }}</p>
+    </div>
+    {% endif %}
+</div>
+
+{% if not prediction %}
+<div class="footer">
+    <p>Upload a healthy crop or diseased crop image for identification.</p>
+</div>
+{% endif %}
+
+<div id="loading" class="loading">
+    <div class="spinner"></div>
+</div>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: url("{{ url_for('static', filename='images/farm_background1.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    </style>
+    
+<script>
+    // Function to display selected file name and preview
+    function displayFileName(input) {
+        const fileName = input.files[0]?.name || "Upload Crop Image";
+        document.getElementById('file-name').innerText = fileName;
+
+        // Show image preview
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview').src = e.target.result;
+                document.getElementById('preview-container').style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    // Handle Swal alert if no prediction
+    const hasPrediction = "{{ 'true' if prediction else 'false' }}";
+    if (hasPrediction === "false") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'Please upload an image of a crop to detect diseases!',
+        });
+    }
+</script>
+
+</body>
+</html>

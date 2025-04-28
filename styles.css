@@ -1,0 +1,161 @@
+/* Overall body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url("/static/images/farm_background1.jpg") no-repeat center center fixed;
+    background-size: cover;
+    padding: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container for the content */
+.container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Title style */
+h1 {
+    color: #34a853;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* File upload button styling */
+.file-upload {
+    background-color: #34a853;
+    color: white;
+    padding: 14px 25px;
+    font-size: 18px;
+    border-radius: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+/* File upload hover effect */
+.file-upload:hover {
+    background-color: #2e8b46;
+    transform: scale(1.05);
+}
+
+/* Hide default file input */
+.file-input {
+    display: none;
+}
+
+/* Submit button styling */
+.submit-btn {
+    margin-top: 15px;
+    padding: 12px 30px;
+    background-color: #4285f4;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Submit button hover effect */
+.submit-btn:hover {
+    background-color: #3367d6;
+    transform: scale(1.05);
+}
+
+/* Result box styling */
+.result {
+    background: #e0f7fa;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 15px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Result text styling */
+.result h3 {
+    color: #ff6f00;
+    margin-bottom: 10px;
+}
+
+/* Footer text styling */
+.footer {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Loading spinner styling */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Spinner animation */
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Image Preview Styling */
+#preview-container {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+}
+
+#preview-container h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#preview {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+/* File name text (displayed after selecting file) */
+#file-name {
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+}
